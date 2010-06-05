@@ -1,0 +1,51 @@
+========================
+Avfun弹幕发射器（附源码）
+========================
+
+文件列表
+--------
+1.Readme.txt 本文档
+2.shooter.exe 可执行程序
+3.w9xpopen.exe win98兼容补丁
+4.shooter.py python源代码
+5.GPLv3.txt 源代码授权许可
+
+使用方法
+--------
+1.运行shooter.exe
+2.输入您的APIKEY，apikey可以到http://www.avfun001.org/apikey/获取
+3.输入您要发送的Partid，例如地址http://www.avfun001.org/id/100384.001的视频，Partid为100384.001
+4.按照提示的格式输入弹幕（们），发送前会进行语法检查，不合格将不会发送任何弹幕。
+5.点击发送
+PS.程序附带了一些基本的弹幕范例
+
+源代码使用方法
+--------------
+1.安装python和wxpython运行环境
+http://www.python.org/download/
+http://www.wxpython.org/download.php#binaries
+2.直接双击shooter.py执行即可
+
+Avfun弹幕服务器API（简单介绍）
+-----------------------------
+1.本程序其实只是想说明Avfun弹幕服务器的API而已，方便技术宅自行DIY弹幕发射器。
+2.Avfun弹幕服务器是基于twisted框架的socket服务，端口1818
+3.弹幕API通信全部采用json格式，方便调用。（至少在python里面使用起来就很方便，json.loads和dumps即可实现json串和dict类的互转）
+4.API认证串{"protocol":"apikey","apikey":"yourapikey"}
+5.批量弹幕发送串{"protocol":"batchmsg","length":5,"data":[{},{},{},{},{}]},
+每个{}是一个leavemsg的dict结构类似如下：
+{"partid":1000.002,"time":12.4,"txt":"haha","mode":4,"date":"2005-10-29 12:23:45","color":1677245,"fontsize":25}
+6.做弹幕发射器，只要了解这两个API就够了，顺序是先发送API认证串认证，看返回信息判断是否认证成功，如果成功，再发送批量弹幕串。
+7.更多API请看 http://www.avfun001.org/apikey/ 以及http://code.google.com/p/avfun 的弹幕服务器源代码。
+
+
+作者和版权信息
+--------------
+1.源码授权许可协议：GPLv3，见GPLv3.txt
+2.作者：observer
+3.博客：http://obmem.com
+4.网站：
+  http://www.avfun001.org
+  http://www.simplecd.org
+
+
